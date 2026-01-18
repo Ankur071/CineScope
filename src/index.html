@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>CineScope - Discover Movies</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Discover and explore movies with CineScope - Your ultimate movie discovery platform">
+  <meta name="theme-color" content="#0f0f1a">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Preconnect to external resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="CineScope - Discover Movies">
+  <meta property="og:description" content="Your ultimate movie discovery platform">
+  <meta property="og:type" content="website">
+</head>
+
+<body>
+  <!-- Loading screen shown while Angular bootstraps and loads data -->
+  <div class="app-loading" id="initial-loader">
+    <div class="app-loading__spinner"></div>
+  </div>
+
+  <style>
+    .app-loading {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0f0f1a 100%);
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.3s ease-out;
+    }
+
+    .app-loading.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .app-loading__spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid transparent;
+      border-top-color: #5865F2;
+      border-right-color: #4752C4;
+      border-radius: 50%;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <app-root></app-root>
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+// ================================
+// Responsive Breakpoints & Mixins
+// ================================
+
+// Breakpoint values
+$breakpoints: (
+    'xs': 0,
+    'sm': 576px,
+    'md': 768px,
+    'lg': 992px,
+    'xl': 1200px,
+    'xxl': 1400px
+);
+
+// Mobile-first media query mixin
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Breakpoint '#{$breakpoint}' not found.";
+    }
+}
+
+// Max-width media query mixin
+@mixin respond-down($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (max-width: map-get($breakpoints, $breakpoint) - 1px) {
+            @content;
+        }
+    }
+}
+
+// ================================
+// Utility Mixins
+// ================================
+
+// Flexbox center
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Flexbox between
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+// Absolute center
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// Absolute cover
+@mixin absolute-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+// Text ellipsis
+@mixin text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// Multi-line text ellipsis
+@mixin line-clamp($lines: 2) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+// Glassmorphism effect
+@mixin glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+}
+
+// Card hover effect
+@mixin card-hover {
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+
+    &:hover {
+        transform: scale(1.03) translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+}
+
+// Focus visible ring
+@mixin focus-ring {
+    &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+}
+
+// Hide scrollbar but keep functionality
+@mixin hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+// Custom scrollbar
+@mixin custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg-elevated) var(--bg-surface);
+
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--bg-surface);
+        border-radius: var(--radius-full);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--bg-elevated);
+        border-radius: var(--radius-full);
+
+        &:hover {
+            background: var(--text-muted);
+        }
+    }
+}
+
+// Container
+@mixin container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+
+    @include respond-to('md') {
+        padding-inline: var(--space-xl);
+    }
+}
+
+// Button base
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-lg);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    @include focus-ring;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "buildCommand": "pnpm run build",
+    "outputDirectory": "dist/cinescope/browser",
+    "installCommand": "pnpm install",
+    "framework": null,
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ]
+}
