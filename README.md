@@ -92,7 +92,7 @@ src/app/
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/cinescope.git
+git clone https://github.com/Ankur071/cinescope.git
 cd cinescope
 
 # Install dependencies
@@ -147,7 +147,7 @@ export const environment = {
 
 ## Live Demo
 
-[View Live Demo](https://your-deployment-url.vercel.app)
+[View Live Demo](https://cinescope-beta.vercel.app/)
 
 ---
 
